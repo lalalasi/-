@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>小皇后</title>
+    <meta name=”renderer” content=”webkit|ie-comp|ie-stand”/>
+    <meta name="keywords" content="小皇后"/>
+    <meta name="description" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit"/>
+    <link type="favicon" rel="shortcut icon" href="favicon.ico" />
+
+    <link rel="stylesheet" href="css/jquery.datetimepicker.css"/>
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/idangerous.swiper2.7.6.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/mediaelementplayer.min.css"/>
+
+    <!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/layer.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+</head>
+
+<body>
+<div class="wrapper-outer">
+    <div class="col-md-12 col-xs-12 full" style="padding: 0;">
+
+        <div class="header">
+            <a href="/"><img src="images/logo.png" class="logo"></a>
+            <a href="javascript:;"><img src="images/icon_opera.png" class="opera"></a>
+
+            <div id="search2" class="hidden-xs">
+                <ul id="login-panel1" style="">
+                    <li>
+                        <a href="javascript:;" class="loginbtn" target="_blank">登录</a>
+                    </li>
+                    <li id="zhuces">
+                        <a href="javascript:;" class="orderbtn" target="_blank">我的订单</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!--nav-->
+        <div class="menu" style="height:61px;">
+
+            <div id="bs-navbar" class="navbar-collapse bar-trans">
+                <ul class="nav navbar-nav" id="nav"></ul>
+            </div>
+        </div>
+        <!--nav-end-->
+
+    </div>
+</div>
+<!-- header -->
+
+<div class="container" style="padding-bottom: 20px;">
+
+    <div class="row">
+        <div class="col-lg-8 full">
+            <div class="flash-news">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper" id="lunbo"></div>
+
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-4 g-sd visible-lg-block">
+            <div class="r-tit1">
+                <ul>
+                    <li>
+                        <a href="#">演出日历</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="calendar">
+                <input type="text" id="datetimepicker3" style="display: none;">
+                <div class="show-date" id="show-date"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 bg-ff" id="recom">
+            <div class="panel-title clearfix">
+                <h4 id="tjTitle"></h4>
+                <a class="more" href="list1.html?mid=1&nid=1">更多&gt;</a>
+                <div class="bd-bt hidden-xs"></div>
+            </div>
+            <div class="m-piclist">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper" id="recomLb">
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 bg-ff" id="video">
+            <div class="m-tv" id="m-tv">
+                <div class="panel-title clearfix">
+                    <h4 id="spTitle"></h4>
+                    <a class="more" href="list3.html?mid=6&nid=10">更多&gt;</a>
+                    <div class="bd-bt hidden-xs"></div>
+                </div>
+                <div class="swiper-container">
+                    <div class="swiper-wrapper" id="videoLb"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row panel-info">
+        <div class="col-md-4 bg-ff" id="media">
+            <div class="m-newslist list-ad-h">
+                <div class="panel-title clearfix">
+                    <h4 id="mtTitle"></h4>
+                    <a class="more">更多&gt;</a>
+                    <div class="bd-bt hidden-xs"></div>
+                </div>
+                <ul id="mediaLb"></ul>
+            </div>
+        </div>
+        <div class="col-md-4 bg-ff">
+            <div class="collaborate" style="overflow:hidden;">
+                <div class="panel-title clearfix">
+                    <h4 id="hbTitle"></h4>
+                    <div class="bd-bt hidden-xs"></div>
+                </div>
+
+                <div class="swiper-wrapper" id="huoban" style="text-align: center;">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 bg-ff" id="news">
+            <div class="news list-ad-h">
+                <div class="panel-title clearfix">
+                    <h4 id="xwTitle"></h4>
+                    <a class="more" href="list_meiti.htm?id=5&mid=10">更多&gt;</a>
+                    <div class="bd-bt hidden-xs"></div>
+                </div>
+                <ul id="newsLb"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="footer" class="text-center">
+    <div class="f-logo"></div>
+    <p class="hidden-xs f-copyright" style="padding-top: 5px;">版权所有@2015 小皇后 | 沪ICP备06004742号</p>
+    <p class="f-addr">地址：上海市人民大道300号 | 邮编：200003 | 电话：（8621）6386 8686</p>
+    <div style="width:300px;margin:0 auto; padding:10px 0;">
+        <a target="_blank" href="#" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
+            <img src="images/gongan.png" style="float:left;"/>
+            <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">沪公网安备 31010102003923号</p>
+        </a>
+    </div>
+    <div class="f-qr">
+        <dl>
+            <dt><img src="images/qr_wx.jpg"></dt>
+            <dd>微信公众号</dd>
+        </dl>
+        <dl>
+            <dt><img src="images/qr_xl.jpg"></dt>
+            <dd>新浪微博</dd>
+        </dl>
+    </div>
+</div>
+<!-- /footer -->
+
+</div>
+<script src="js/bootstrap.min.js" language="javascript" type="text/javascript"></script>
+<script src="js/idangerous.swiper2.7.6.min.js" language="javascript" type="text/javascript"></script>
+<script src="js/jquery.datetimepicker.js" language="javascript" type="text/javascript"></script>
+<script src="js/mediaelement-and-player.min.js" language="javascript" type="text/javascript"></script>
+<!--<script language="javascript" type="text/javascript" src="js/dedeajax2.js"></script>-->
+<!--<script src="js/menu-m.js" language="javascript" type="text/javascript"></script>-->
+
+<script>
+    var mySwiper;
+    var mySwiper2;
+    var mySwiper6;
+
+    window.onload = function(){
+        $('.flash-news .swiper-button-prev').on('click', function (e) {
+            e.preventDefault()
+            mySwiper.swipePrev()
+        })
+        $('.flash-news .swiper-button-next').on('click', function (e) {
+            e.preventDefault()
+            mySwiper.swipeNext()
+        })
+
+
+
+        //控制最新演出的自动滚动，鼠标移入，则停止滚动，鼠标移出，继续滚动
+        $(function () {
+            $(".m-piclist .swiper-slide .poster-single").hover(function () {
+                mySwiper2.stopAutoplay();
+            }, function () {
+                mySwiper2.startAutoplay();
+            });
+        });
+        $('.m-piclist .swiper-button-prev').on('click', function (e) {
+            e.preventDefault()
+            mySwiper2.swipePrev()
+        })
+        $('.m-piclist .swiper-button-next').on('click', function (e) {
+            e.preventDefault()
+            mySwiper2.swipeNext()
+        })
+        $('.m-piclist').show();
+
+
+
+        $('.m-piclist').on('mouseenter', ' .swiper-slide', function () {
+            $(this).find('.poster-single').slideDown();
+        });
+        $('.m-piclist').on('mouseleave', ' .swiper-slide', function () {
+            $(this).find('.poster-single').slideUp();
+        });
+
+        $('.m-perform-list').on('mouseenter', ' .m-p-slide', function () {
+            $(this).find('.poster-single').slideDown();
+        });
+        $('.m-perform-list').on('mouseleave', ' .m-p-slide', function () {
+            $(this).find('.poster-single').slideUp();
+        });
+
+
+
+        // $('.panel-title').each(function () {
+        //     var iW = $(this).find('h4').width();
+        //
+        //     $(this).find('.bd-bt').css('width', iW + 5);
+        // });
+    }
+
+    var currentDate = "";
+    var calData = [];
+    $('#datetimepicker3').datetimepicker({
+        inline: true,
+        timepicker: false,
+        onChangeDateTime: function (dp, $input) {
+            var ydate = $input.val().split(' ')[0];
+            var dDate = new Date($input.val().split(' ')[0]);
+            var dD = dDate.getDate();
+            var dM = dDate.getMonth();
+            var dt = dDate.Format("yyyy-MM-dd");
+
+            addToDt(calData);
+            var sb = $("#calendar td[data-month=" + dM + "][data-date=" + dD + "].s-rd");
+
+            if (sb.length == 0) {
+                //这一天没有项目
+                $('.show-date').hide();
+                return;
+            }
+
+            fillCalendarBoard(ydate);
+
+            if (currentDate != ydate) {
+                currentDate = ydate;
+                var cls = $(this).attr('class');
+                //计算显示的项目框top
+                $('.show-date').hide();
+                $('.show-date').show();
+                var oDiv = $("#calendar");
+                var offset = oDiv.offset();
+                $(".xdsoft_datetimepicker").click(function (e) {
+                    var m = e.pageY; //鼠标据顶部的距离
+                    var d = offset.top; //div距顶部的距离
+                    var x = e.pageX;
+                    var xx = offset.left;
+                    var xxf = x - xx;
+                    var btot = m - d;
+                    if (btot > 72 && btot < 329 && xxf > 20 && xxf < 380) {
+                        $("#show-date").css("top", btot + 15);
+                        $("#show-date").css("left", 200);
+                        if (xxf > 20 && xxf < 200)
+                            $("#show-date").css("left", xxf);
+                    } else {
+                        $('.show-date').hide();
+                    }
+                });
+            } else {
+                $('.show-date').toggle();
+            }
+        },
+
+        onChangeMonth: function (dp, $input) {
+            $('.show-date').hide();
+            var dY = dp.getFullYear();
+            var dM = dp.getMonth() + 1;
+            getCalendarData(dY, dM);
+        }
+    });
+
+    $('#datetimepicker3').datetimepicker({
+        lang: 'ch',
+    });
+
+    function addToDt(calData) {
+        /*日历模拟数据*/
+        //     $('#calendar td').eq(4).addClass('s-rd');
+        //      $('#calendar td').eq(20).addClass('s-gy');
+        for (var idx in calData) {
+            var d = calData[idx]["project_st_time"];
+            var dd = calData[idx]["project_st_time"];
+            if (!d) {
+                return;
+            }
+            var strs = new Array(); //定义一数组
+            strs = d.split(" ");
+            strs1 = strs[0].split("-");
+            var dM = strs1[1] - 1;
+            var dD = strs1[2];
+            var nowtime = Date.parse(new Date()) / 1000;
+
+            if (dD < 10) {
+                dD = dD.replace(/^0/, '');
+            }
+            d = new Date(Date.parse(d.replace(/-/g, "/")));
+            d = d.getTime() / 1000;
+            //var d=Date.parse(d)/1000;
+            var ago3Day = Date.parse(new Date().toString()) + 86400000 * 3;
+
+            ago3Day = ago3Day / 1000;
+            dd = Date.parse(dd) / 1000;
+            // console.log();
+            //     console.log(ago3Day/1000);
+            if (dd > ago3Day) {
+                // console.log(1);
+            } else {
+                // console.log(2);
+            }
+
+            if (d > nowtime) {
+
+                $('#calendar td[data-month=' + dM + '][data-date=' + dD + ']').addClass('s-rd');
+            } else {
+
+                $('#calendar td[data-month=' + dM + '][data-date=' + dD + ']').addClass('s-rd s-gy');
+            }
+
+        }
+    }
+
+
+    function fillCalendarBoard(ydate) {
+        var stext = "<ul>";
+        for (var idx = 0; idx < calData.length; idx++) {
+
+            var dateObj = calData[idx]["project_st_time"];
+            var date, time;
+            var st = new Array();
+            st = dateObj.split(" ");
+            xx = st[0]; // 六月10日
+            time = st[1]; // 下午 3:12
+            if (xx == ydate) {
+                stext += "<li><a href='" + calData[idx]["url"] + "' target='_blank'>" + calData[idx]["project_name"] + "&nbsp&nbsp" + time + "</a></li>";
+            }
+        }
+        stext += "</ul>";
+        $(".show-date").html(stext);
+    }
+
+    var parseNumber = function (num) {
+        return num < 10 ? "0" + num : num;
+    };
+    var dateFormat = function (date, formatStr) {
+        var dateObj = {},
+            rStr = /\{([^}]+)\}/,
+            mons = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'];
+
+        dateObj["Y"] = date.getFullYear();
+        dateObj["M"] = date.getMonth() + 1;
+        dateObj["MM"] = parseNumber(dateObj["M"]);
+        dateObj["Mon"] = mons[dateObj['M'] - 1];
+        dateObj["D"] = date.getDate();
+        dateObj["DD"] = parseNumber(dateObj["D"]);
+        dateObj["h"] = date.getHours();
+        dateObj["hh"] = parseNumber(dateObj["h"]);
+        dateObj["t"] = dateObj["h"] > 12 ? dateObj["h"] - 12 : dateObj["h"];
+        dateObj["tt"] = parseNumber(dateObj["t"]);
+        dateObj["A"] = dateObj["h"] > 12 ? '下午' : '上午';
+        dateObj["i"] = date.getMinutes();
+        dateObj["ii"] = parseNumber(dateObj["i"]);
+        dateObj["s"] = date.getSeconds();
+        dateObj["ss"] = parseNumber(dateObj["s"]);
+
+        while (rStr.test(formatStr)) {
+            formatStr = formatStr.replace(rStr, dateObj[RegExp.$1]);
+        }
+        return formatStr;
+    };
+
+
+    $(function () {
+        var dDate = new Date();
+        var dY = dDate.getFullYear();
+        var dM = dDate.getMonth() + 1;
+        getCalendarData(dY, dM);
+    });
+
+    function getCalendarData(year, month) {
+        $.ajax({
+            type: "GET",
+            url: ip + "/show-date?year=" + year + "&month=" + month,
+            dataType: "json",
+            success: function (re) {
+                calData = re.data;
+                addToDt(calData);
+            }
+        });
+    }
+
+    Date.prototype.Format = function (fmt) { //author: meizz
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "d+": this.getDate(), //日
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    }
+
+    // 加入收藏
+    $(function () {
+        $("#addFavorite").click(function () {
+            var ctrl = (navigator.userAgent.toLowerCase()).indexOf('mac') != -1 ? 'Command/Cmd' : 'CTRL';
+
+            try {
+                if (document.all) { //IE类浏览器
+                    try {
+                        window.external.toString(); //360浏览器不支持window.external，无法收藏
+                        window.alert("您可以尝试通过快捷键 ctrl + D 加入到收藏夹~");
+                    } catch (e) {
+                        try {
+                            window.external.addFavorite(window.location, document.title);
+                        } catch (e) {
+                            window.external.addToFavoritesBar(window.location, document.title); //IE8
+                        }
+                    }
+                } else if (window.sidebar) { //firfox等浏览器
+
+                    window.sidebar.addPanel(document.title, window.location, "");
+                } else {
+                    alert('您可以尝试通过快捷键 ctrl  + D 加入到收藏夹~');
+                }
+            } catch (e) {
+                window.alert("您可以尝试通过快捷键 ctrl + D 加入到收藏夹~");
+            }
+
+        });
+    });
+</script>
+
+<script>
+    $(function () {
+        getLunbo();
+        getRecom();
+        getVideo();
+        getMedia();
+        getNews();
+        getHuoBan();
+    })
+
+    //轮播1
+    function getLunbo() {
+        $.ajax({
+            type: "GET",
+            url: ip + "/banner",
+            dataType: "json",
+            success: function (re) {
+                if (!re.status) {
+                    alert(re.message)
+                    return;
+                }
+
+                linboAppendHtml(re.data);
+
+                mySwiper = new Swiper('.flash-news .swiper-container', {
+                    pagination: '.flash-news .swiper-pagination',
+                    paginationClickable: true,
+                    swipeNext: '.swiper-button-next',
+                    swipePrev: '.swiper-button-prev',
+                    effect: 'fade',
+                    autoplay: 3000,
+                    loop: true,
+                    simulateTouch: false,
+                    calculateHeight: true,
+                    roundLengths: true
+                });
+            }
+        });
+    }
+
+    function linboAppendHtml(data) {
+        var lbEL = $("#lunbo");
+
+        data.forEach(function (item) {
+            var div = $("<div></div>");
+            var a = $("<a></a>");
+            var img = $("<img>");
+
+            div.addClass("swiper-slide");
+            a.attr("href", item.link).attr("target", item.target);
+            img.attr("src", item.img).attr("alt", item.desc);
+
+            a.append(img);
+            div.append(a);
+            lbEL.append(div);
+        });
+    }
+
+
+    //最新推荐
+    function getRecom() {
+        $.ajax({
+            type: "GET",
+            url: ip + "/show-recommend",
+            dataType: "json",
+            success: function (re) {
+                if (!re.status) {
+                    alert(re.message)
+                    return;
+                }
+
+                recomAppendHtml(re.data);
+
+                mySwiper2 = new Swiper('.m-piclist .swiper-container', {
+                    slidesPerView: 4,
+                    autoplay: 3000,
+                    swipeNext: '.swiper-button-next',
+                    swipePrev: '.swiper-button-prev',
+                    loop: true,
+                    calculateHeight: true,
+                    slidesPerView: $(window).width() <= 768 ? 3 : 4,
+                    roundLengths: true
+                });
+            }
+        });
+    }
+
+    function recomAppendHtml(data) {
+        var rlbEl = $("#recomLb");
+        $("#tjTitle").text(data.info.title);
+
+        data.list.forEach(function (item) {
+            var sDivEl = $("<div></div>").addClass("swiper-slide");
+            var wDivEl = $("<div></div>").addClass("wrapper");
+            var a1El = $("<a></a>");
+            var imgEl = $("<img>");
+            var pDivEl = $("<div></div>").addClass("poster-single").css("height", "100px").css("cursor", "pointer");
+            var aDivEl = $("<div></div>").addClass("aname").css("height", "50px");
+            var a2El = $("<a></a>");
+            var dDivEl = $("<div></div>").addClass("date").css("height", "50px");
+            var wpDivEl = $("<div></div>").addClass("wrapper");
+            var a3El = $("<a></a>").addClass("visible-xs-inline");
+
+            a1El.attr("href", item.url).attr("target","_blank");
+            imgEl.attr("src", item.thumb).attr("alt", item.title);
+            a2El.attr("href", item.url).text(item.title).attr("target","_blank");
+            a3El.attr("href", item.url).text(item.title).attr("target","_blank");
+            // dDivEl.text(item.date).append($("<br/>"), $("<span></span>").css("float", "right").text("立即购票"));
+
+            a1El.append(imgEl);
+            pDivEl.append(aDivEl.append(a2El), dDivEl);
+            wDivEl.append(a1El, pDivEl);
+            sDivEl.append(wDivEl, a3El);
+            rlbEl.append(sDivEl);
+        });
+    }
+
+
+    //视频
+    function getVideo() {
+        $.ajax({
+            type: "GET",
+            url: ip + "/home-video",
+            dataType: "json",
+            success: function (re) {
+                if (!re.status) {
+                    alert(re.message)
+                    return;
+                }
+
+                $("#spTitle").text(re.data.info.title);
+                videoAppendHtml(re.data.list);
+
+                mySwiper6 = new Swiper('#m-tv .swiper-container', {
+                    paginationClickable: true,
+                    pagination: '#m-tv .swiper-pagination',
+                    calculateHeight: true,
+                    roundLengths: true,
+                    preventClicks: false,
+                    simulateTouch:false
+                });
+
+                // $('video').mediaelementplayer({
+                //     //mode: 'shim',
+                //     success: function (player, node) {
+                //         $('#' + node.id + '-mode').html('mode: ' + player.pluginType);
+                //     }
+                // });
+            }
+        });
+    }
+
+    //视频 少传一张图片  title 没屌用
+    function videoAppendHtml(data) {
+        var rlbEl = $("#videoLb");
+
+        data.forEach(function (item) {
+            var sDivEl = $("<div></div>").addClass("swiper-slide");
+            var mDivEl = $("<div></div>").addClass("m-vd");
+            // var video = $("<video></video>").css("preload", "none").css("width", "100%").css("height", "100%").attr("id", "player1");
+
+            // video.attr("poster", item.poster).prop("src", item.video_url).attr("type", "video/mp4");
+
+
+            mDivEl.append(item.video_url);
+            // mDivEl.append(video);
+            sDivEl.append(mDivEl);
+            rlbEl.append(sDivEl);
+        });
+
+    }
+
+    //媒体
+    function getMedia() {
+        $.ajax({
+            type: "GET",
+            url: ip + "/news-media?id=4",
+            dataType: "json",
+            success: function (re) {
+                if (!re.status) {
+                    alert(re.message)
+                    return;
+                }
+
+                re.data.list.length = 6;
+                mediaAppendHtml(re.data);
+            }
+        });
+    }
+
+    function mediaAppendHtml(data) {
+        var aEl = $("#media .panel-title .more");
+        var rlbEl = $("#mediaLb");
+        $("#mtTitle").text(data.info.title);
+
+        aEl.attr("href", "list2.html?mid=" + data.info.id + "&nid=10");
+
+        data.list.forEach(function (item) {
+            var li = $("<li></li>");
+            var span = $("<span></span>").addClass("date");
+            var a = $("<a></a>");
+
+            span.text(item.created_at);
+            a.attr("href", "detail.html?id=" + item.id + "&nid=10" + "&mid=" + data.info.id).text(item.title);
+
+            li.append(span, a);
+            rlbEl.append(li);
+        });
+
+    }
+
+    //伙伴
+    function getHuoBan() {
+        $.ajax({
+            type: "GET",
+            url: ip + "/partner",
+            dataType: "json",
+            success: function (re) {
+                if (!re.status) {
+                    alert(re.message)
+                    return;
+                }
+
+                re.data.list.length = 4;
+                huobanAppendHtml(re.data);
+            }
+        });
+    }
+
+    function huobanAppendHtml(data) {
+        $("#hbTitle").text(data.info.title);
+
+        data.list.forEach(function (item) {
+            $("#huoban").append($("<img/>").attr({"src":item.thumb,title: item.title}).css({'width': '120px', 'height': '120px', 'margin':'30px 30px'}));
+        });
+
+    }
+
+
+    //消息
+    function getNews() {
+        $.ajax({
+            type: "GET",
+            url: ip + "/news-media?id=5",
+            dataType: "json",
+            success: function (re) {
+                if (!re.status) {
+                    alert(re.message)
+                    return;
+                }
+
+                re.data.list.length = 6;
+                newsAppendHtml(re.data);
+            }
+        });
+    }
+
+    function newsAppendHtml(data) {
+        var h4El = $("#news .panel-title h4");
+        var aEl = $("#news .panel-title .more");
+        var rlbEl = $("#newsLb");
+
+        h4El.text(data.info.title);
+        aEl.attr("href", "list2.html?mid=" + data.info.id + "&nid=10");
+
+
+        data.list.forEach(function (item) {
+            var li = $("<li></li>");
+            var span = $("<span></span>").addClass("date");
+            var a = $("<a></a>");
+
+            span.text(item.created_at);
+            a.attr("href", "detail.html?id=" + item.id + "&nid=10" + "&mid=" + data.info.id).text(item.title);
+
+            li.append(span, a);
+            rlbEl.append(li);
+        });
+
+    }
+
+</script>
+</body>
+
+</html>

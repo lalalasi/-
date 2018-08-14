@@ -1,0 +1,18 @@
+.pr40{padding-right:40px!important;}
+.vm{vertical-align:middle;}
+.mr5{margin-right:5px;}
+.mid_lf{width:100%;margin-bottom:60px;}
+.CalendarForm{border-collapse:collapse;}
+.CalendarForm tr td{width:108px;height:138px;background-color:#fff;vertical-align:top;border-right:1px solid #ccc;border-left:1px solid #ccc;border-bottom:1px solid #ccc;padding:0 8px;}
+.cl7{width:836px!important;}
+.CalendarForm tr.first td{height:auto;border:0;padding-bottom:20px;font-size:14px;text-indent:18px;}
+.CalendarForm tr.second td{height:auto;color:#E46700;font-weight:bold;font-size:14px;text-indent:18px;border-bottom:1px solid #ccc;border-right:0;border-left:0;padding-bottom:5px;}
+.CalendarForm tr td.active{background-color:#F2F2F2;}
+.CalendarForm tr.first td.active,.CalendarForm tr.second td.active{background-color:#fff;}
+.CalendarForm tr td.active span,.CalendarForm tr td.active a{color:#E46700;}
+.CalendarForm tr.first td.active a{color:#555;}
+.CalendarForm tr td span{color:#4D4D4D;font-size:14px;display:block;text-indent:12px;padding-top:10px;}
+.list{margin-top:28px;}
+.list li{background:url('dian1.jpg')/*tpa=http://www.shgtheatre.com/templets/theatre/images/booking/dian1.jpg*/ no-repeat left 4px;padding-left:18px;}
+.CalendarForm tr td.active .list li{background:url('dian2.jpg')/*tpa=http://www.shgtheatre.com/templets/theatre/images/booking/dian2.jpg*/ no-repeat left 4px;}
+

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>小皇后</title>
+    <meta name=”renderer” content=”webkit|ie-comp|ie-stand”/>
+    <meta name="keywords" content="小皇后"/>
+    <meta name="description" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit"/>
+    <link type="favicon" rel="shortcut icon" href="favicon.ico" />
+
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/layer.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+</head>
+
+<body>
+<div class="wrapper-outer">
+    <div class="col-md-12 col-xs-12 full" style="padding: 0;">
+
+        <div class="header">
+            <a href="/"><img src="images/logo.png" class="logo"></a>
+            <a href="javascript:;"><img src="images/icon_opera.png" class="opera"></a>
+
+            <div id="search2" class="hidden-xs">
+                <ul id="login-panel1" style="">
+                    <li>
+                        <a href="javascript:;" class="loginbtn" target="_blank">登录</a>
+                    </li>
+                    <li id="zhuces">
+                        <a href="javascript:;" class="orderbtn" target="_blank">我的订单</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!--nav-->
+        <div class="menu" style="height:61px;">
+
+            <div id="bs-navbar" class="navbar-collapse bar-trans">
+                <ul class="nav navbar-nav" id="nav"></ul>
+            </div>
+        </div>
+        <!--nav-end-->
+
+    </div>
+</div>
+<!-- header -->
+
+<div class="container" style="padding-bottom: 20px; min-height: 800px;">
+    <div class="row">
+        <div class="col-md-3 hidden-xs">
+            <div class="sidebar" id="menuList"></div>
+        </div>
+        <div class="col-md-9 full viewbox arc-con">
+            <div class="title"><h2></h2></div>
+            <div id="conten"></div>
+            <div id="changpage" style="margin-top: 20px;"></div>
+        </div>
+    </div>
+</div>
+
+<div id="footer" class="text-center">
+    <div class="f-logo"></div>
+    <p class="hidden-xs f-copyright" style="padding-top: 5px;">版权所有@2015 小皇后 | 沪ICP备06004742号</p>
+    <p class="f-addr">地址：上海市人民大道300号 | 邮编：200003 | 电话：（8621）6386 8686</p>
+    <div style="width:300px;margin:0 auto; padding:10px 0;">
+        <a target="_blank" href="#" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
+            <img src="images/gongan.png" style="float:left;"/>
+            <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;">沪公网安备 31010102003923号</p>
+        </a>
+    </div>
+    <div class="f-qr">
+        <dl>
+            <dt><img src="images/qr_wx.jpg"></dt>
+            <dd>微信公众号</dd>
+        </dl>
+        <dl>
+            <dt><img src="images/qr_xl.jpg"></dt>
+            <dd>新浪微博</dd>
+        </dl>
+    </div>
+</div>
+<!-- /footer -->
+
+</div>
+
+<script>
+    $(function () {
+        var id = GetQueryString("id");
+        var nid = GetQueryString("nid");
+        var mid = GetQueryString("mid");
+
+        if (!id || !mid ||!nid) {
+            // window.location.href = "index.html";
+            return;
+        }
+
+        menuList(nid, mid, id);
+        getDetail(id);
+    });
+
+    //左侧列表
+    function menuList(nid, mid, id) {
+        $.ajax({
+            type: "GET",
+            url: ip + "/menu?id=" + nid,
+            dataType: "json",
+            success: function (re) {
+                if (!re.status) {
+                    alert(re.message)
+                    return;
+                }
+
+                menuListAppendHtml(re.data, nid, mid);
+            }
+        });
+    }
+
+    function menuListAppendHtml(data, nid, mid) {
+        var lbEL = $("#menuList");
+
+        data.forEach(function (item) {
+            var dl = $("<dl></dl>");
+            var dt = $("<dt></dt>");
+            var a = $("<a></a>")
+
+            if (item.id == mid) {
+                dt.addClass("on");
+            }
+
+            if(item.id == "1"){
+                a.attr("href", "list1.html?id=" + item.id + "&nid=" + nid + "&mid=" + item.id).attr("target", "_top").text(item.name);
+            } else if(item.id == "6"){
+                a.attr("href", "list3.html?id=" + item.id + "&nid=" + nid + "&mid=" + item.id).attr("target", "_top").text(item.name);
+            } else if(item.id == "4" || item.id == "5"){
+                a.attr("href", "list2.html?id=" + item.id + "&nid=" + nid + "&mid=" + item.id).attr("target", "_top").text(item.name);
+            } else {
+                a.attr("href", "detail.html?id=" + item.id + "&nid=" + nid + "&mid=" + item.id).attr("target", "_top").text(item.name);
+            }
+
+            dt.append(a);
+            dl.append(dt);
+            lbEL.append(dl);
+        });
+    }
+
+    //右侧列表
+    function getDetail(id) {
+        $.ajax({
+            type: "GET",
+            url: ip + "/single?id=" + id,
+            dataType: "json",
+            success: function (re) {
+                if (!re.status) {
+                    alert(re.message)
+                    return;
+                }
+
+                detailAppendHtml(re.data);
+            }
+        });
+    }
+
+    function detailAppendHtml(data) {
+        $(".title h2").text(data.title);
+        $("#conten").html(data.content);
+    }
+</script>
+</body>
+
+</html>
